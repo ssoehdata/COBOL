@@ -1,0 +1,3 @@
+AWK statement to format your COBOL Line Numbers from the terminal:
+
+awk -i inplace '{printf("%04d00%s\n", NR, substr($0,7,120)) }' filename.cob 
