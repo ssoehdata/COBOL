@@ -70,7 +70,7 @@
 004500     Display "In a display varaible: ", DisplayFract.
 004600*This returns 1, in line with SIN function oddly enough..     
 004700     move COS(RadiansVar) to COMP1_VAR1.
-004800     DISPLAY "The SIN of 90 degrees is: ", COMP1_VAR1.
+004800     DISPLAY "The COS of 90 degrees is: ", COMP1_VAR1.
 004900     move COS(RadiansVar) to DisplayFract.
 005000     compute DisplayFract ROUNDED = COS(RadiansVar).
 005100     Display "In a display variable: ", DisplayFract.

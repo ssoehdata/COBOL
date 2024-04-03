@@ -21,6 +21,10 @@
        77  WS_Counter        PIC 9999        value 0.
       * float OneDimArray[10].
        77  OneDimArray occurs 10 times usage is comp-1.
+      *This is a variable array
+       77  Array_Size pic 99 value 0.
+       77  OneDimArrayV occurs 1 to 99 times depending on Array_size
+               indexed by ODAV_Index usage is comp-1.
        LOCAL-STORAGE SECTION. 
       *Local-Storage section mem is reallocated when program starts
 002100 LINKAGE SECTION.

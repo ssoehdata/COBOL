@@ -34,12 +34,12 @@
 003400     add 1 to COMP1_VAR1.
 003500     Display "Comp-1 Var-1 is: ", COMP1_VAR1.
 003600     compute RadiansVar = (90.0 * FUNCTION PI)/180.0
-003700*This returns a neg value
+003700*
 003800     move SIN(RadiansVar) to COMP1_VAR1.
-003900     DISPLAY "The SIN of 90 degrees isn't: ", COMP1_VAR1.
+003900     DISPLAY "The SIN of 90 degrees is: ", COMP1_VAR1.
 004000*This returns 1, in line with SIN function oddly enough..     
 004100     move COS(RadiansVar) to COMP1_VAR1.
-004200     DISPLAY "The SIN of 90 degrees is: ", COMP1_VAR1.
+004200     DISPLAY "The Cosine of 90 degrees is: ", COMP1_VAR1.
 004300
 004400    
 004500     STOP RUN.

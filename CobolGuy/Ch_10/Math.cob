@@ -174,9 +174,11 @@
 016900* before the end of the output displayed
 017000**** N.B.:! You need to add a comma after the COMP1_VAR1 (in this
 017100*   example) and then finish the statement after CRLF w/ a "."
-017200        DISPLAY "value of PI is: ", PI.
+017200        DISPLAY "value of PI is: ", PI,
+              CRLF.
+              
 017300        compute PIover2 = (PI/2)
-017400        DISPLAY " PI over 2 is: ", PIover2.
+017400        DISPLAY " PI over 2 is: ", PIover2, CRLF.
 017500
 017600
 017700
