@@ -1,0 +1,24 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. SALES.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  SALES-AMOUNT           PIC 99V99.
+       01  SALES-TAX              PIC 99V99.
+       01  TAX-INCLUDED           PIC 99V99.
+       01  MORE-DATA              PIC XXX  VALUE 'YES'.
+       PROCEDURE DIVISION.
+       100-MAIN.
+           PERFORM UNTIL MORE-DATA = 'NO'
+               DISPLAY 'ENTER A SALES AMOUNT AS AN INTEGER'
+               ACCEPT SALES-AMOUNT
+               COMPUTE SALES-TAX = .08 *
+                   SALES-AMOUNT
+               COMPUTE TAX-INCLUDED = SALES-AMOUNT + SALES-TAX 
+               DISPLAY 'SALES TAX ', SALES-TAX
+               DISPLAY 'SALES AMOUNT INCLUDING SALES-TAX ', TAX-INCLUDED
+               DISPLAY 'IS THERE MORE INPUT (YES OR NO)?'
+               ACCEPT MORE-DATA 
+           END-PERFORM
+           STOP RUN.
+
+
