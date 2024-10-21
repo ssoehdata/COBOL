@@ -1,0 +1,72 @@
+000100*in-line procedures
+000200
+000300*awk -i inplace '{printf("%04d00%s\n", NR, substr($0,7,120)) }' filename.cob
+000400 IDENTIFICATION DIVISION. 
+000500 PROGRAM-ID.  INLINEPROCEDURES.
+000600 DATE-WRITTEN.  19-10-2024.
+000700 DATE-COMPILED. 19-10-2024.
+000800 AUTHOR. 
+000900 ENVIRONMENT DIVISION.
+001000  CONFIGURATION SECTION.
+001100  SOURCE-COMPUTER. LINUXMINT21.
+001200  OBJECT-COMPUTER. LINUXMINT21.
+001300  INPUT-OUTPUT SECTION.
+001400  FILE-CONTROL.
+001500 DATA DIVISION. 
+001600  FILE SECTION.
+001700 WORKING-STORAGE SECTION.
+      *    need to add 's' for signed in front of pic clause for neg 
+      *    values in loop , and to obtain "0" counter
+001800 77  WS_COUNTER          PIC s9999 VALUE 0.
+001900 LOCAL-STORAGE SECTION. 
+002000 77  LS_COUNTER          PIC 9999 VALUE 0. 
+002100 PROCEDURE DIVISION. 
+002200     000-BEGIN.
+002300         DISPLAY "DEBUGGING TEXT: IF DISPLAYED, PROGRAM RUNNING." 
+002400* inline block of code
+002500         PERFORM 4 times
+002600             DISPLAY "Inside simple perform"
+002700             DISPLAY "Is this a loop?"
+002800         END-PERFORM.
+002900         PERFORM VARYING WS_COUNTER FROM 1 UNTIL WS_COUNTER 
+003000             IS GREATER THAN 9
+003100             DISPLAY "COUNTER VALUE IS ", WS_COUNTER
+003200         END-PERFORM.
+
+               DISPLAY "COUNTING DOWN NOW..."
+               PERFORM VARYING WS_COUNTER FROM 10 BY -1 UNTIL WS_COUNTER
+                   IS LESS THAN 0
+003000*           
+003100             DISPLAY "COUNTER VALUE IS ", WS_COUNTER
+003200         END-PERFORM.
+
+003300
+003400             ADD 1 TO LS_COUNTER 
+003500             DISPLAY "YOU ARE IN A LOOP: ", LS_COUNTER
+003600         
+003700
+003800* example of an inline procedure 
+003900* could also just write peform 010-procedure-alpha 2 times.
+004000         PERFORM 010-PROCEDURE-ALPHA thru 
+004100                 010-PROCEDURE-ALPHA-END 2 TIMES.
+004200
+004300         DISPLAY "IF YOU COMMENT OUT 'GOBACK' THIS IS DISPLAYED, "
+004400                  "AND YOU EXITED THE ALPHA LOOP PROCEDURE."
+004500         STOP RUN.
+004600
+004700        010-PROCEDURE-ALPHA.
+004800             
+004900             DISPLAY "I'M IN " WITH NO ADVANCING
+005000             DISPLAY "PROCEDURE ALPHA ".
+005100             DISPLAY "ENDING PROCEDURE ALPHA".
+005200*  if goback is commented out, it breaks the procedure alpha loop
+005300*  and the procedure alpha counter will only read 001 
+005400*  as well as displaying the debug message above regarding 
+005500*  commenting out goback. 
+005600*  otherwise, with goback in, the debug display is not run  
+005700           GOBACK. 
+005800        010-PROCEDURE-ALPHA-END.
+005900             
+006000
+006100 END PROGRAM INLINEPROCEDURES.
+006200
