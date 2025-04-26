@@ -4,8 +4,9 @@
 
 ## Working through learning resources, exercises /tutorials
 
-### Included:
- 
+### Included Resources:
+
+#### Textbooks: 
 #### Beginning COBOL for Programmers (Coughlin)
 #### COBOL for the 21st Century, 11th Edition (Stern)
 #### Murach's Structured COBOL (Murach)
