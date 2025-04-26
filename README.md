@@ -11,3 +11,5 @@
 #### Murach's Structured COBOL (Murach)
 #### Teach Yourself COBOL in 21 Days (Budlong)
 
+#### Diverse Tutorials/Exercises:
+#### CobolGuy Tutorial
