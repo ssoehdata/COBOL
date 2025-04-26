@@ -2,6 +2,12 @@
 
 ![alt text](https://github.com/ssoehdata/COBOL/blob/main/cobol_logo.jpg) 
 
-## programs / excercises /tutorials etc.
+## Working through learning resources, excercises /tutorials
 
-### 
+### Included:
+ 
+### Beginning COBOL for Programmers
+### COBOL for the 21st Century, 11th Edition
+### Murach's Structured COBOL
+### Teach Yourself COBOL in 21 Days
+
