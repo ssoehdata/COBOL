@@ -6,8 +6,8 @@
 
 ### Included:
  
-### Beginning COBOL for Programmers
-### COBOL for the 21st Century, 11th Edition
-### Murach's Structured COBOL
-### Teach Yourself COBOL in 21 Days
+#### Beginning COBOL for Programmers
+#### COBOL for the 21st Century, 11th Edition
+#### Murach's Structured COBOL
+#### Teach Yourself COBOL in 21 Days
 
