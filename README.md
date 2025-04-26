@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/ssoehdata/COBOL/blob/main/cobol_logo.jpg) 
 
-## Working through learning resources, excercises /tutorials
+## Working through learning resources, exercises /tutorials
 
 ### Included:
  
