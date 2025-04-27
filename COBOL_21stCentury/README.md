@@ -1,7 +1,5 @@
 ## COBOL for the 21st Century
-Working through the text COBOL for the 21st Century 11th Edition
-
-![alt text](https://github.com/ssoehdata/COBOL/blob/main/cobol_logo.jpg) 
+Working through the text COBOL for the 21st Century 11th Edition 
 
 
 ## Table of Contents
