@@ -10,7 +10,7 @@
 #### Beginning COBOL for Programmers (Coughlin)
 #### COBOL for the 21st Century, 11th Edition (Stern)
 #### Murach's Structured COBOL (Murach)
-#### Teach Yourself COBOL in 21 Days (Budlong)
+#### Teach Yourself COBOL in 21 Days, 2nd Edition (Budlong)
 
 #### Diverse Tutorials/Exercises:
 #### CobolGuy Tutorial
