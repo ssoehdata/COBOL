@@ -1,4 +1,4 @@
-## Working through Murach's Structured Cobol Book
+## Working through Murach's Structured Cobol Book (Murach)
 
 
 
