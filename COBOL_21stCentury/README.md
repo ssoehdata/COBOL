@@ -1,5 +1,5 @@
 ## COBOL for the 21st Century
-Working through the text COBOL for the 21st Century 11th Edition 
+Working through the text COBOL for the 21st Century 11th Edition (Stern, Stern, Ley)
 
 
 ## Table of Contents
