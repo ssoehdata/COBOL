@@ -1,4 +1,4 @@
-## Working through Beginning COBOL for Programmers Book
+## Working through Beginning COBOL for Programmers Book (Coughlin)
 
 
 
