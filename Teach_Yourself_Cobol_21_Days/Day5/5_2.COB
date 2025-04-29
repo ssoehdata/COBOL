@@ -1,4 +1,4 @@
-      * Using GOT TO to execute a paragraph several times. 
+      * Using GO TO to execute a paragraph several times. 
        IDENTIFICATION DIVISION. 
        PROGRAM-ID. MULT01. 
       **********************************************************
