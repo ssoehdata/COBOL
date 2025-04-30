@@ -1,0 +1,40 @@
+000100 IDENTIFICATION DIVISION.
+000200 PROGRAM-ID. JACK05.
+000300 ENVIRONMENT DIVISION.
+000400 DATA DIVISION.
+000500
+000600 WORKING-STORAGE SECTION.
+000700
+000800 01  THE-MESSAGE     PIC X(50)
+000900     VALUE "Jack be nimble,".
+001000
+001100 01  THE-NUMBER      PIC 9(2) VALUE IS 1.
+001200 01 A-SPACE          PIC X     VALUE IS " ".
+001300
+001400 PROCEDURE DIVISION.
+001500 PROGRAM-BEGIN.
+001600
+001700* Line 1 is set up, so just display it
+001800
+       DISPLAY
+           THE-NUMBER
+           A-SPACE
+           THE-MESSAGE.
+002200
+002300* Set up and Display line 2
+           ADD 1 TO THE-NUMBER.
+           MOVE "Jack be quick," TO THE-MESSAGE.
+           DISPLAY
+           THE-NUMBER
+           A-SPACE
+           THE-MESSAGE.
+
+003100* Set up and display line 3
+           ADD 1 TO THE-NUMBER.
+           MOVE "Jack jump over the candlestick." TO THE-MESSAGE.
+           DISPLAY
+           THE-NUMBER
+           A-SPACE
+           THE-MESSAGE.
+003900     PROGRAM-DONE.
+           STOP RUN.
