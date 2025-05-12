@@ -1,6 +1,5 @@
       * How to use a Data Structure 
-      * N.B.: compiles but with errors, can suppress these 
-      * with -w compile flag (gnuCobol version 3.1.2.0 )
+
        
        IDENTIFICATION DIVISION.
        PROGRAM-ID. CMPINTO3.
