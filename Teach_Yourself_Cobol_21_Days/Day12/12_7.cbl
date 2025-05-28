@@ -1,5 +1,10 @@
       * Listing 12.7 A Listing File 
       * VNDNEW03.cbl 
+      *-----------------------------------------------
+      * A  listing file is contains the code of the original 
+      * file being compiled and all the COPY files incl in their
+      * correct places in the file. 
+      *-----------------------------------------------
        IDENTIFICATION DIVISION. 
        PROGRAM-ID. VNDNEW03. 
       *------------------------------------------------------
