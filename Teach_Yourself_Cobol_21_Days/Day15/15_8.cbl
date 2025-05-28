@@ -1,0 +1,40 @@
+      * Skip asking the user which field 
+       CHANGE-RECORDS.
+           PERFORM GET-FIELD-TO-CHANGE. 
+      *    PERFORM CHANGE-ONE-FIELD 
+      *        UNTIL WHICH-FIELD = ZERO. 
+           PERFORM CHANGE-ONE-FIELD. 
+       
+           PERFORM GET-STATE RECORD. 
+
+       GET-FIELD-TO-CHANGE. 
+           PERFORM DISPLAY-ALL-FIELDS. 
+           PERFORM ASK-WHICH-FIELD. 
+
+       ASK-WHICH-FIELD. 
+      *    PERFORM ACCEPT-WHICH-FIELD. 
+      *    PERFORM RE-ACCEPT-WHICH-FIELD 
+      *        UNTIL WHICH-FIELD NOT > 1. 
+           MOVE 1 TO WHICH-FIELD. 
+
+      *    ACCEPT-WHICH-FIELD. 
+      *    DISPLAY "ENTER THE NUMBER OF THE FIELD". 
+      *    DISPLAY "TO CHANGE (1) OR 0 TO EXIT. 
+      *    ACCEPT WHICH-FIELD. 
+
+      *    RE-ACCEPT-WHICH-FIELD. 
+      *    DISPLAY "INVALID ENTRY". 
+      *    PERFORM ACCEPT-WHICH-FIELD. 
+
+       CHANGE-ONE-FIELD. 
+           PERFORM CHANGE-THIS-FIELD. 
+      *    PERFORM GET-FIELD-TO-CHANGE. 
+
+       CHANGE-THIS-FIELD. 
+           IF WHICH-FIELD = 1 
+               PERFORM ENTER-STATE-NAME. 
+
+       PERFORM REWRITE-STATE-RECORD. 
+       
+
+           
