@@ -1,0 +1,8 @@
+      * Entering VENDOR-ADDRESS-2 
+       ENTER-VENDOR-ADDRESS-2.
+       DISPLAY "ENTER VENDOR ADDRESS-2".
+       ACCEPT VENDOR-ADDRESS-2.
+       INSPECT VENDOR-ADDRESS-2
+           CONVERTING LOWER-ALPHA
+           TO         UPPER-ALPHA.
+           
