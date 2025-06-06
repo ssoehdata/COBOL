@@ -1,117 +1,153 @@
-      * CREATING TEST DATA 
-      * Listing 10.7 Creating test data for phnrprt01.cbl 
-       IDENTIFICATION DIVISION. 
-       PROGRAM-ID. PHNBLD01.
-      ***********************************************************
-      * This program creates a new data file  and fills it with
-      * test data. The test records are writtent to the data file 
-      * and echoed to the printer.
-      ************************************************************
-       ENVIRONMENT DIVISION.
-       INPUT-OUTPUT SECTION.
-       FILE-CONTROL.
+000100 IDENTIFICATION DIVISION.
+000200 PROGRAM-ID. PHNBLD01.
+000300*--------------------------------------------------
+000400* This program creates a new data file and fills
+000500* it with test data.
+000600* The test records are written to the data file
+000700* and echoed to the printer.
+000800*--------------------------------------------------
+000900 ENVIRONMENT DIVISION.
+001000 INPUT-OUTPUT SECTION.
+001100 FILE-CONTROL.
+001200
            SELECT PHONE-FILE
-               ASSIGN TO "phone.dat"
-               ORGANIZATION IS SEQUENTIAL.
+001300
+           ASSIGN TO "phone.dat"
+001400
+           ORGANIZATION IS SEQUENTIAL.
+001500
+001600
            SELECT PRINTER-FILE
-               ASSIGN TO PRINTER 
-               ORGANIZATION IS LINE SEQUENTIAL.
-
-       DATA DIVISION.
-       FILE SECTION. 
-       FD  PHONE-FILE 
-           LABEL RECORDS ARE STANDARD. 
-       01  PHONE-RECORD.
-           05  PHONE-LAST-NAME                  PIC X(20).
-           05  PHONE-FIRST-NAME                 PIC X(20).
-           05  PHONE-NUMBER                     PIC X(15).
-           05  PHONE-EXTENSION                  PIC X(5).
-
-       FD  PRINTER-FILE 
-           LABEL RECORDS ARE OMITTED. 
-       01  PRINTER-RECORD                       PIC X(80).
-
-       WORKING-STORAGE SECTION. 
-
-       01  HOW-MANY                              PIC 999. 
-       01  ENTRY-FIELD                           PIC ZZZ. 
-
-       01  PRINT-LINES                          PIC 99 VALUE ZEROES.
-       01  FORMATTED-NUMBER.
-           05 FILLER                            PIC X(6) VALUE "(404) ".
-           05 FILLER                            PIC X(4) VALUE "555-".
-           05 PHONE-COUNTER                     PIC 9(4) VALUE ZERO.
-
-       PROCEDURE DIVISION. 
-       MAIN-LOGIC SECTION. 
-       PROGRAM-BEGIN. 
-           
-           PERFORM OPENING-PROCEDURE. 
+001700
+           ASSIGN TO PRINTER
+001800
+           ORGANIZATION IS LINE SEQUENTIAL.
+001900
+002000 DATA DIVISION.
+002100 FILE SECTION.
+002200 FD PHONE-FILE
+002300
+           LABEL RECORDS ARE STANDARD.
+002400 01 PHONE-RECORD.
+002500
+           05 PHONE-LAST-NAME   PIC X(20).
+002600
+           05 PHONE-FIRST-NAME   PIC X(20).
+002700
+           05 PHONE-NUMBER      PIC X(15).
+002800
+           05 PHONE-EXTENSION   PIC X(5).
+002900
+003000 FD  PRINTER-FILE
+003100
+           LABEL RECORDS ARE OMITTED.
+003200 01  PRINTER-RECORD   PIC X(80).
+003300
+003400 WORKING-STORAGE SECTION.
+003500
+003600 01  HOW-MANY     PIC 999.
+003700 01  ENTRY-FIELD  PIC ZZZ.
+003800
+003900 01 PRINT-LINES     PIC 99 VALUE ZEROES.
+004000 01 FORMATTED-NUMBER.
+004100
+           05 FILLER      PIC X(6) VALUE "(404) ".
+004200
+           05 FILLER      PIC X(4) VALUE "555-".
+004300
+           05 PHONE-COUNTER    PIC 9(4) VALUE ZERO.
+004400
+004500 PROCEDURE DIVISION.
+004600 MAIN-LOGIC SECTION.
+004700 PROGRAM-BEGIN.
+004800
+004900
+           PERFORM OPENING-PROCEDURE.
+005000
            PERFORM GET-HOW-MANY.
+005100
            MOVE ZEROES TO PRINT-LINES.
+005200
            PERFORM ADD-RECORDS
-           VARYING PHONE-COUNTER 
-           FROM 1 BY 1 UNTIL 
+005300
+           VARYING PHONE-COUNTER
+005400
+           FROM 1 BY 1 UNTIL
+005500
            PHONE-COUNTER > HOW-MANY.
-           PERFORM CLOSING-PROCEDURE. 
-
-       PROGRAM-DONE.
-           STOP RUN. 
-
-      * OPENING AND CLOSING 
-
-       OPENING-PROCEDURE.
-           OPEN OUTPUT PHONE-FILE. 
-           OPEN OUTPUT PRINTER-FILE. 
-
-       CLOSING-PROCEDURE.
+005600
+           PERFORM CLOSING-PROCEDURE.
+005700
+005800 PROGRAM-DONE.
+005900
+           STOP RUN.
+006000
+006100* OPENING AND CLOSING
+006200
+006300 OPENING-PROCEDURE.
+006400
+           OPEN OUTPUT PHONE-FILE.
+006500
+           OPEN OUTPUT PRINTER-FILE.
+006600
+006700 CLOSING-PROCEDURE.
+006800
            CLOSE PHONE-FILE.
+006900
            MOVE SPACE TO PRINTER-RECORD.
-           WRITE PRINTER-RECORD BEFORE ADVANCING PAGE. 
+007000
+           WRITE PRINTER-RECORD BEFORE ADVANCING PAGE.
+007100
            CLOSE PRINTER-FILE.
-
-       GET-HOW-MANY.
-           DISPLAY "How many test entries (1 - 999)".
-           ACCEPT ENTRY-FIELD. 
-      * or ACCEPT ENTRY-FIELD WITH CONVERSION. 
-           MOVE ENTRY-FIELD TO HOW-MANY. 
-
-       ADD-RECORDS.
-           PERFORM FORMAT-THE-RECORD. 
-           PERFORM ADD-THIS-RECORD. 
-
-       FORMAT-THE-RECORD.
-           MOVE "Jeremiah----------------X" TO PHONE-FIRST-NAME.
-           MOVE "Johnson-----------------X" TO PHONE-LAST-NAME.
+007200
+007300 GET-HOW-MANY.
+007400
+           DISPLAY "How many test entries (1-999)".
+007500
+           ACCEPT ENTRY-FIELD.
+007600*or ACCEPT ENTRY-FIELD WITH CONVERSION.
+007700
+           MOVE ENTRY-FIELD TO HOW-MANY.
+007800
+007900 ADD-RECORDS.
+008000
+           PERFORM FORMAT-THE-RECORD.
+008100
+           PERFORM ADD-THIS-RECORD.
+008200
+008300 FORMAT-THE-RECORD.
+008400
+           MOVE "Joshua------------X" TO PHONE-FIRST-NAME.
+008500
+           MOVE "Johnson------------X" TO PHONE-LAST-NAME.
+008600
            MOVE "12345" TO PHONE-EXTENSION.
+008700
            MOVE FORMATTED-NUMBER TO PHONE-NUMBER.
-       
-       ADD-THIS-RECORD.
+008800
+008900 ADD-THIS-RECORD.
+009000
            WRITE PHONE-RECORD.
+009100
            PERFORM PRINT-THIS-RECORD.
-       
-       PRINT-THIS-RECORD.
-           IF PRINT-LINES NOT < 55 
-               PERFORM NEW-PAGE. 
-           MOVE PHONE-RECORD TO PRINTER-RECORD. 
-           WRITE PRINTER-RECORD BEFORE ADVANCING 1. 
-           ADD 1 TO PRINT-LINES. 
-       
-       NEW-PAGE.
+009200
+009300 PRINT-THIS-RECORD.
+009400
+           IF PRINT-LINES NOT < 55
+009500
+           PERFORM NEW-PAGE.
+009600
+           MOVE PHONE-RECORD TO PRINTER-RECORD.
+009700
+           WRITE PRINTER-RECORD BEFORE ADVANCING 1.
+009800
+           ADD 1 TO PRINT-LINES.
+009900
+010000 NEW-PAGE.
+010100
            MOVE SPACE TO PRINTER-RECORD.
-           WRITE PRINTER-RECORD BEFORE ADVANCING PAGE. 
-           MOVE ZEROES TO PRINT-LINES. 
+010200
+           WRITE PRINTER-RECORD BEFORE ADVANCING PAGE.
+010300
+           MOVE ZEROES TO PRINT-LINES.
            
-
-
-           
-
-
-
-
-
-
-
-
-
-       

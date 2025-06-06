@@ -1,210 +1,279 @@
-       IDENTIFICATION DIVISION.
-       PROGRAM-ID. VNINNM02.
-      *--------------------------------
-      *Inquire for the Vendor File
-      *using vendor name.
-      *--------------------------------
-       ENVIRONMENT DIVISION.
-       INPUT-OUTPUT SECTION.
-       FILE-CONTROL.
-
+000100 IDENTIFICATION DIVISION.
+000200 PROGRAM-ID. VNINNM02.
+000300*--------------------------------
+000400* Inquire for the Vendor File
+000500* using vendor name.
+000600*--------------------------------
+000700 ENVIRONMENT DIVISION.
+000800 INPUT-OUTPUT SECTION.
+000900 FILE-CONTROL.
+001000
+001100
            COPY "SLVND02.CBL".
-
+001200
+001300
            COPY "SLSTATE.CBL".
-       
-       DATA DIVISION.
-       FILE SECTION.
-       
-
+001400
+001500 DATA DIVISION.
+001600 FILE SECTION.
+001700
+001800
            COPY "FDVND04.CBL".
-
+001900
+002000
            COPY "FDSTATE.CBL".
-
-       WORKING-STORAGE SECTION.
-       
-       77  VENDOR-FILE-AT-END          PIC X.
-       77  STATE-RECORD-FOUND          PIC X.
-       
-       77  SEE-NEXT-RECORD             PIC X.
-       
-       77  VENDOR-NAME-FIELD           PIC X(30).
-       
+002100
+002200 WORKING-STORAGE SECTION.
+002300
+002400 77 VENDOR-FILE-AT-END    PIC X.
+002500 77 STATE-RECORD-FOUND     PIC X.
+002600
+002700 77 SEE-NEXT-RECORD    PIC X.
+002800
+002900 77 VENDOR-NAME-FIELD   PIC X(30).
+003000
+003100
            COPY "WSCASE01.CBL".
-
-       PROCEDURE DIVISION.
-       PROGRAM-BEGIN.
+003200
+003300 PROCEDURE DIVISION.
+003400     PROGRAM-BEGIN.
+003500
            PERFORM OPENING-PROCEDURE.
+003600
            PERFORM MAIN-PROCESS.
+003700
            PERFORM CLOSING-PROCEDURE.
-
-       PROGRAM-DONE.
+003800
+003900 PROGRAM-DONE.
+004000
            STOP RUN.
-
-       OPENING-PROCEDURE.
+004100
+004200 OPENING-PROCEDURE.
+004300
            OPEN I-O VENDOR-FILE.
+004400
            OPEN I-O STATE-FILE.
-
-       CLOSING-PROCEDURE.
-
+004500
+004600 CLOSING-PROCEDURE.
+004700
            CLOSE VENDOR-FILE.
-
+004800
            CLOSE STATE-FILE.
-
-       MAIN-PROCESS.
+004900
+005000 MAIN-PROCESS.
+005100
            PERFORM INQUIRE-BY-NAME.
-      *--------------------------------
-      * INQUIRE
-      *--------------------------------
-        INQUIRE-BY-NAME.
+005200*--------------------------------
+005300* INQUIRE
+005400*--------------------------------
+005500 INQUIRE-BY-NAME.
+005600
            PERFORM GET-EXISTING-RECORD.
+005700
            PERFORM INQUIRE-RECORDS
+005800
            UNTIL VENDOR-NAME = SPACES.
-       INQUIRE-RECORDS.
+005900
+006000 INQUIRE-RECORDS.
+006100
            PERFORM SHOW-THIS-RECORD.
+006200
            PERFORM SHOW-NEXT-RECORD
-               UNTIL SEE-NEXT-RECORD = "N" OR
-                   VENDOR-FILE-AT-END = "Y".
-
-           PERFORM GET-EXISTING-RECORD.
-
-      *--------------------------------
-      * Show records one by one
-      *--------------------------------
-       SHOW-THIS-RECORD.
+006300
+           UNTIL SEE-NEXT-RECORD = "N" OR
+006400
+           VENDOR-FILE-AT-END = "Y".
+006500
+006600
+       PERFORM GET-EXISTING-RECORD.
+006700
+006800
+006900*--------------------------------
+007000* Show records one by one
+007100*--------------------------------
+007200 SHOW-THIS-RECORD.
+007300
            PERFORM DISPLAY-ALL-FIELDS.
+007400
            PERFORM GET-SEE-NEXT-RECORD.
-
-       SHOW-NEXT-RECORD.
+007500
+007600 SHOW-NEXT-RECORD.
+007700
            PERFORM READ-NEXT-VENDOR-RECORD.
+007800
            IF VENDOR-FILE-AT-END NOT = "Y"
-           PERFORM SHOW-THIS-RECORD.       
-      *--------------------------------
-      * Get valid record logic
-      *--------------------------------
-       GET-EXISTING-RECORD.
+           PERFORM SHOW-THIS-RECORD.
+008000
+008100*--------------------------------
+008200* Get valid record logic
+008300*--------------------------------
+008400 GET-EXISTING-RECORD.
+008500
            PERFORM ACCEPT-EXISTING-KEY.
+008600
            PERFORM RE-ACCEPT-EXISTING-KEY
+008700
            UNTIL VENDOR-FILE-AT-END NOT = "Y".
-
-       ACCEPT-EXISTING-KEY.
+008800
+008900 ACCEPT-EXISTING-KEY.
+009000
            PERFORM INIT-FOR-KEY-ENTRY.
+009100
            PERFORM ENTER-VENDOR-NAME.
+009200
            IF VENDOR-NAME NOT = SPACES
+009300
            PERFORM READ-FIRST-VENDOR-RECORD.
-
-       RE-ACCEPT-EXISTING-KEY.
+009400
+009500 RE-ACCEPT-EXISTING-KEY.
+009600
            DISPLAY "RECORD NOT FOUND"
+009700
            PERFORM ACCEPT-EXISTING-KEY.
-
-      *--------------------------------
-      * Field Entry logic
-      *--------------------------------
-       ENTER-VENDOR-NAME.
+009800
+009900*--------------------------------
+010000* Field Entry logic
+010100*--------------------------------
+010200 ENTER-VENDOR-NAME.
            PERFORM ACCEPT-VENDOR-NAME.
-       ACCEPT-VENDOR-NAME.
+010400
+010500 ACCEPT-VENDOR-NAME.
            DISPLAY "ENTER VENDOR NAME".
            ACCEPT VENDOR-NAME.
            INSPECT VENDOR-NAME
-           CONVERTING LOWER-ALPHA
-           TO         UPPER-ALPHA.
-
-       GET-SEE-NEXT-RECORD.
+               CONVERTING LOWER-ALPHA
+               TO          UPPER-ALPHA.
+011200 GET-SEE-NEXT-RECORD.
            PERFORM ACCEPT-SEE-NEXT-RECORD.
            PERFORM RE-ACCEPT-SEE-NEXT-RECORD
-           UNTIL SEE-NEXT-RECORD = "Y" OR "N".
-       ACCEPT-SEE-NEXT-RECORD.
+            UNTIL SEE-NEXT-RECORD = "Y" OR "N".
+011600
+011700 ACCEPT-SEE-NEXT-RECORD.
+011800
            DISPLAY "DISPLAY NEXT RECORD (Y/N)?".
+011900
            ACCEPT SEE-NEXT-RECORD.
+012000
+012100
            IF SEE-NEXT-RECORD = SPACE
+012200
            MOVE "Y" TO SEE-NEXT-RECORD.
+012300
+012400
            INSPECT SEE-NEXT-RECORD
            CONVERTING LOWER-ALPHA
-           TO         UPPER-ALPHA.
-
-       RE-ACCEPT-SEE-NEXT-RECORD.
+           TO       UPPER-ALPHA.
+012700
+012800 RE-ACCEPT-SEE-NEXT-RECORD.
+012900
            DISPLAY "MUST ENTER YES OR NO".
+013000
            PERFORM ACCEPT-SEE-NEXT-RECORD.
-
-      *--------------------------------
-      * Display logic
-      *--------------------------------
-       DISPLAY-ALL-FIELDS.
+013100
+013200*--------------------------------
+013300* Display logic
+013400*--------------------------------
+013500 DISPLAY-ALL-FIELDS.
+013600
            DISPLAY " ".
+013700
            PERFORM DISPLAY-VENDOR-NUMBER.
-           PERFORM DISPLAY-VENDOR-NAME.         
-           PERFORM DISPLAY-VENDOR-ADDRESS-1.           
-           PERFORM DISPLAY-VENDOR-ADDRESS-2.         
-           PERFORM DISPLAY-VENDOR-CITY.          
-           PERFORM DISPLAY-VENDOR-STATE.          
-           PERFORM DISPLAY-VENDOR-ZIP.          
-           PERFORM DISPLAY-VENDOR-CONTACT.          
-           PERFORM DISPLAY-VENDOR-PHONE.         
+     
+           PERFORM DISPLAY-VENDOR-NAME.
+    
+           PERFORM DISPLAY-VENDOR-ADDRESS-1.
+
+           PERFORM DISPLAY-VENDOR-ADDRESS-2.
+
+           PERFORM DISPLAY-VENDOR-CITY.
+014200
+            PERFORM DISPLAY-VENDOR-STATE.
+014300
+           PERFORM DISPLAY-VENDOR-ZIP.
+014400
+           PERFORM DISPLAY-VENDOR-CONTACT.
+014500
+            PERFORM DISPLAY-VENDOR-PHONE.
+014600
            DISPLAY " ".
-
-       DISPLAY-VENDOR-NUMBER.
-           DISPLAY "  VENDOR NUMBER: " VENDOR-NUMBER.
-       DISPLAY-VENDOR-NAME.           
-           DISPLAY "1. VENDOR NAME: " VENDOR-NAME.           
-       DISPLAY-VENDOR-ADDRESS-1.           
-           DISPLAY "2. VENDOR ADDRESS-1: " VENDOR-ADDRESS-1.           
-       DISPLAY-VENDOR-ADDRESS-2.          
-           DISPLAY "3. VENDOR ADDRESS-2: " VENDOR-ADDRESS-2.           
-       DISPLAY-VENDOR-CITY.          
+014700
+014800 DISPLAY-VENDOR-NUMBER.
+014900
+           DISPLAY "    VENDOR NUMBER: " VENDOR-NUMBER.
+015000
+015100 DISPLAY-VENDOR-NAME.
+015200
+           DISPLAY "1. VENDOR NAME: " VENDOR-NAME.
+0         
+0      DISPLAY-VENDOR-ADDRESS-1.
+0          
+           DISPLAY "2. VENDOR ADDRESS-1: " VENDOR-ADDRESS-1.
+0       
+0      DISPLAY-VENDOR-ADDRESS-2.
+0          
+           DISPLAY "3. VENDOR ADDRESS-2: " VENDOR-ADDRESS-2.
+0       
+0      DISPLAY-VENDOR-CITY.
+0          
            DISPLAY "4. VENDOR CITY: " VENDOR-CITY.
-           
-       DISPLAY-VENDOR-STATE.           
+0         
+0      DISPLAY-VENDOR-STATE.
+0         
            MOVE VENDOR-STATE TO STATE-CODE.
-           PERFORM READ-STATE-RECORD.     
-           IF STATE-RECORD-FOUND = "N"           
-           MOVE "**Not found**" TO STATE-NAME.          
-           DISPLAY "5. VENDOR STATE: "         
-           VENDOR-STATE " "          
+0          PERFORM READ-STATE-RECORD.
+016600
+           IF STATE-RECORD-FOUND = "N"
+016700
+           MOVE "**Not found**" TO STATE-NAME.
+016800
+           DISPLAY "5. VENDOR STATE: "
+016900
+           VENDOR-STATE " "
+017000
            STATE-NAME.
-          
-       DISPLAY-VENDOR-ZIP.       
-           DISPLAY "6. VENDOR ZIP: " VENDOR-ZIP.         
-       DISPLAY-VENDOR-CONTACT.
-        
+017100
+017200 DISPLAY-VENDOR-ZIP.
+017300
+           DISPLAY "6. VENDOR ZIP: " VENDOR-ZIP.
+017400
+017500 DISPLAY-VENDOR-CONTACT.
+017600
            DISPLAY "7. VENDOR CONTACT: " VENDOR-CONTACT.
-       
-       DISPLAY-VENDOR-PHONE.
-        
+017700
+017800 DISPLAY-VENDOR-PHONE.
+017900
            DISPLAY "8. VENDOR PHONE: " VENDOR-PHONE.
-
-      *--------------------------------
-      *File Related Routines
-      *--------------------------------
-       INIT-FOR-KEY-ENTRY.
-           MOVE SPACE TO VENDOR-RECORD.         
+018000
+018100*--------------------------------
+018200* File Related Routines
+018300*--------------------------------
+018400 INIT-FOR-KEY-ENTRY.
+018500
+           MOVE SPACE TO VENDOR-RECORD.
            MOVE ZEROES TO VENDOR-NUMBER.         
+           MOVE "N" TO VENDOR-FILE-AT-END.
+        
+       READ-FIRST-VENDOR-RECORD.
+        
            MOVE "N" TO VENDOR-FILE-AT-END.       
-       READ-FIRST-VENDOR-RECORD.        
-           MOVE "N" TO VENDOR-FILE-AT-END.         
-           START VENDOR-FILE        
+           START VENDOR-FILE       
            KEY NOT < VENDOR-NAME        
-           INVALID KEY         
+           INVALID KEY       
            MOVE "Y" TO VENDOR-FILE-AT-END.
-           IF VENDOR-FILE-AT-END NOT = "Y"
+           IF VENDOR-FILE-AT-END NOT = "Y"        
            PERFORM READ-NEXT-VENDOR-RECORD.
-          
-       READ-NEXT-VENDOR-RECORD.          
+        
+       READ-NEXT-VENDOR-RECORD.         
            READ VENDOR-FILE NEXT RECORD         
-           AT END           
+           AT END          
            MOVE "Y" TO VENDOR-FILE-AT-END.
-          
-       READ-STATE-RECORD.           
+
+       READ-STATE-RECORD.
            MOVE "Y" TO STATE-RECORD-FOUND.
-           READ STATE-FILE RECORD         
-           INVALID KEY           
-           MOVE "N" TO STATE-RECORD-FOUND.
-           
+           READ STATE-FILE RECORD
+                   INVALID KEY
+                       MOVE "N" TO STATE-RECORD-FOUND.
+                       
 
 
-
-
-
-
-
-
-
-       
+                       
