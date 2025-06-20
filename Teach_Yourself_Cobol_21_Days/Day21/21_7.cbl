@@ -92,12 +92,12 @@
 
        01  TOTAL-THRU.
            05 FILLER                       PIC X(20) VALUE SPACE. 
-           05 FILLER                      PIC X(10) VALUE "TOTAL THRU".
+           05 FILLER                       PIC X(10) VALUE "TOTAL THRU".
 
        01  COLUMN-LINE. 
            05 FILLER                       PIC X(7) VALUE "VOUCHER".
            05 FILLER                       PIC X(1) VALUE SPACE. 
-           05 FILLER                      PIC X(10) VALUE "VENDOR/For".
+           05 FILLER                       PIC X(10) VALUE "VENDOR/For".
            05 FILLER                       PIC X(23) VALUE SPACE. 
            05 FILLER                       PIC X(8) VALUE "DUE DATE".
            05 FILLER                       PIC X(1) VALUE SPACE. 
