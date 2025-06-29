@@ -1,0 +1,5 @@
+      * PROCEDURE DIVISION USING 
+       PROCEDURE DIVISION 
+           USING TIME-HHMMSS FORMATTE-TIME
+                 ZERO-TIME-IS-OK.
+                 
