@@ -5,7 +5,7 @@
       
        WORKING-STORAGE SECTION.
       
-       77 VALID-TIME-FLAG  PIC X.
+       77  VALID-TIME-FLAG  PIC X.
       
            88 TIME-IS-INVALID      VALUE "N".
            88 TIME-IS-ZERO         VALUE "0".
@@ -16,14 +16,14 @@
       *--------------------------------
       * Fields passed for TIME routines.
       *--------------------------------
-       77 FORMATTED-TIME            PIC Z9/99/99.
+       77  FORMATTED-TIME            PIC Z9/99/99.
 
        01  TIME-HHMMSS            PIC 9(6).
 
            FILLER REDEFINES TIME-HHMMSS.
            05 TIME-HH           PIC 99.
-
            05 TIME-MM           PIC 99.
-
            05 TIME-SS           PIC 99.
-
+       
+       77  ZERO-TIME-IS-OK      PIC X VALUE "N".
+       

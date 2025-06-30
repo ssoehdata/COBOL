@@ -1,4 +1,10 @@
       * A calling program 
+
+      ***************************************
+      * compile together with time02.cbl :
+      * cobc -x time02.cbl timedit.cbl 
+      * then run time02
+      *****************************************
        IDENTIFICATION DIVISION.
 000200 PROGRAM-ID. TIME02.
 000300*--------------------------------
@@ -7,25 +13,25 @@
 000600 ENVIRONMENT DIVISION.
 000700 INPUT-OUTPUT SECTION.
 000800 FILE-CONTROL.
-000900
+
 001000 DATA DIVISION.
 001100 FILE SECTION.
-001200
+
 001300 WORKING-STORAGE SECTION.
-001400
+
 001500 77 ANY-TIME  PIC 9(6) VALUE ZEROES.
-001600
+
 001700 77 ANY-FORMATTED  PIC X(8).
-001800
+
 001900 77 FORMATTED-TIME  PIC Z9/99/99.
-002000
+
 002100 77 THE-TIME  PIC 9(6).
-002200
+
 002300 77 ZERO-IS-OK  PIC X VALUE "N".
-002400
+
 002500 PROCEDURE DIVISION.
 002600 PROGRAM-BEGIN.
-002700
+
            PERFORM OPENING-PROCEDURE.
            PERFORM MAIN-PROCESS.
            PERFORM CLOSING-PROCEDURE.
