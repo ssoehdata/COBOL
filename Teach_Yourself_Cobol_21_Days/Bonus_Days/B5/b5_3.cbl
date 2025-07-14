@@ -1,4 +1,6 @@
       *  THis Program shows some string functions. 
+
+      * The REVERSE function, reverses it's argument.
        
        IDENTIFICATION DIVISION.
        PROGRAM-ID. STRNG.
